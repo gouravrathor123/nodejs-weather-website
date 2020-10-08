@@ -5,7 +5,7 @@ const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
 const app = express()  //created express app
-
+const port = process.env.PORT || 3000   
 
 //define paths for express config.
 const public_directory_path = path.join(__dirname,'../public')
@@ -70,14 +70,14 @@ app.get('/weather', (req,res) => {
 app.get('/about',(req,res) => {
     res.render('about', {
         title:"About page",
-        name: "gourav rathor"
+        name: "Gourav Rathor"
     })
 })
 
 app.get('/help',(req,res) => {
     res.render('help', {
         title:"Help page",
-        name: "Gourav rathor"
+        name: "Gourav Rathor"
     })
 })
 
@@ -97,6 +97,6 @@ app.get('*',(req,res) => { //"*" is for match of all if the commands upper it wo
     })
 })
 
-app.listen(3000, () => {  // app.listen will start our server
-    console.log('Server is up on port 3000')
+app.listen(port, () => {  // app.listen will start our server
+    console.log('Server is up on port '+port)
 })
