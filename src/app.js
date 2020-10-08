@@ -37,27 +37,34 @@ app.get('/weather', (req,res) => {
         })
     }
 
-    
-    geocode(address, ( error , {longitute,latitute,place} = {} ) => { //geocode(address, (error, data) => {
-        if(error)
-        {
-           return res.send({ 
-               error: error
-           })
-        }
-    
-       forecast(longitute, latitute, (error, forcastdata) => { // forecast(data.longitute,data.latitute)
-           if(error)
-           {
-               return res.send({  error })
-           }
-           res.send({
-                forcast:forcastdata,
-                place:place,
-                address:req.query.address
-           })
+    else{
+        geocode(address, ( error , {longitute,latitute,place} = {} ) => { //geocode(address, (error, data) => {
+            if(error)
+            {
+               return res.send({ 
+                   error: error
+               })
+            }
+            else
+            {
+                forecast(longitute, latitute, (error, forcastdata) => { // forecast(data.longitute,data.latitute)
+                    if(error)
+                    {
+                        return res.send({  error })
+                    }
+                    else
+                    {
+                        res.send({
+                            forcast:forcastdata,
+                            place:place,
+                            address:req.query.address
+                       })
+                    }
+                 })
+            }
         })
-    })
+    }
+
 })
 
 app.get('/about',(req,res) => {
