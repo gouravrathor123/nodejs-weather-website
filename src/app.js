@@ -18,7 +18,7 @@ app.set('views',viewpath) //tellings express that what is the path of templetes 
 hbs.registerPartials(partialspath)
 
 //set up static directory to serve
-app.use(express.static(public_directory_path)) // telling express that what is the path of puclic forlder
+app.use(express.static(public_directory_path)) // telling express that what is the path of public folder
 
 
 app.get('',(req,res) => {
@@ -29,7 +29,7 @@ app.get('',(req,res) => {
 })
 
 app.get('/weather', (req,res) => {
-    const address = req.query.address
+    const address = req.query.address // if we have searched for /weather?address=ram+sharam the req.query.address will give us the value of as 'ram sharma'
     if(!address)
     {
         return res.send({
